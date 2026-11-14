@@ -7,3 +7,6 @@ services:
     dockerContext: ./backend
     healthCheckPath: /health
     autoDeployTrigger: commit
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://papperpress-online-frontend.vercel.app

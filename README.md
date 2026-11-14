@@ -15,7 +15,7 @@ Create a Render Blueprint from the repository root using `render.yaml`. It build
 
 Create a Vercel project from this repository and set its Root Directory to `frontend`. Set `VITE_API_BASE_URL` to the Render service's HTTPS origin (for example, `https://pdf-compressor-api.onrender.com`) and deploy.
 
-After the Vercel deployment, set `ALLOWED_ORIGINS` in the Render service to the exact Vercel origin (for example, `https://your-site.vercel.app`, with no path or trailing slash), then redeploy the backend. The backend exposes only that configured origin to browser requests.
+The Render Blueprint configures `ALLOWED_ORIGINS` to `https://papperpress-online-frontend.vercel.app`. If you use another production or preview domain, update the value in `render.yaml` or set the exact origin in the Render service (no path or trailing slash), then redeploy the backend. The backend exposes only configured origins to browser requests.
 
 ## Local backend
 
