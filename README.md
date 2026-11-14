@@ -1,35 +1,30 @@
-# Server-side PDF compressor
+# papperpress-online
 
-Express accepts PDF uploads (100 MB maximum), validates the PDF header, limits requests, restricts active and queued compression jobs, and invokes Ghostscript without a shell. Temporary input/output files are created in a private OS temp directory and removed after the response or on error. Production deployments should additionally isolate Ghostscript in a restricted container, configure a reverse-proxy request timeout and HTTPS, and review Ghostscript's licensing terms.
+This repository separates the server-backed version into two deployable parts:
 
-## Local setup
+- `frontend/`: static website; deploy it to Vercel.
+- `backend/`: Express API and Ghostscript; deploy it to Render.
 
-Install Node.js 20+ and Ghostscript. On Windows, Chocolatey can install Ghostscript from an Administrator PowerShell:
+The browser-only version is in the separate `papperpress` repository and deploys to Vercel without a backend.
 
-```powershell
-choco install ghostscript --yes
-```
+## Deploy the backend to Render
 
-On Windows, the server searches the standard `Program Files\gs` install directory automatically. For a nonstandard location, set `GS_PATH` to the full executable path before starting the server. On Linux/macOS, install the `gs` executable and set `GS_PATH` if it is not on `PATH`.
+Create a Render Blueprint from the repository root using `render.yaml`. It builds `backend/Dockerfile` with `backend/` as the Docker context and uses `/health` for health checks. The Docker image installs Ghostscript and starts the Express API.
+
+## Deploy the frontend to Vercel
+
+Create a Vercel project from this repository and set its Root Directory to `frontend`. Set `VITE_API_BASE_URL` to the Render service's HTTPS origin (for example, `https://pdf-compressor-api.onrender.com`) and deploy.
+
+After the Vercel deployment, set `ALLOWED_ORIGINS` in the Render service to the exact Vercel origin (for example, `https://your-site.vercel.app`, with no path or trailing slash), then redeploy the backend. The backend exposes only that configured origin to browser requests.
+
+## Local backend
+
+Install Node.js 20+ and Ghostscript. On Windows, Ghostscript can be installed with Chocolatey; set `GS_PATH` if it is not found automatically. Then:
 
 ```sh
-npm install
+cd backend
+npm ci
 npm start
 ```
 
-Open `http://localhost:3000`. Set `PORT` to change the listening port. The optional target-size workflow tries multiple resolutions and JPEG qualities, then returns its smallest result if the requested target cannot be reached.
-
-## Deploy on Render
-
-Connect the `papperpress-online` repository at its root, then create a Render Blueprint from `render.yaml`. The Dockerfile installs Ghostscript and starts the Express server. The website and `/api/compress` endpoint are served from the same Render service.
-
-Replace the placeholder canonical URLs and sitemap entries in `public/` with the website's production URL before launch.
-
-## Docker
-
-```sh
-docker build -t pdf-compressor .
-docker run --rm -p 3000:3000 --memory=1g --cpus=2 pdf-compressor
-```
-
-Do not expose the container directly to the internet without a TLS reverse proxy, firewalling, request timeouts, and host-level resource limits. Update the placeholder canonical URLs and sitemap entries in `public/` before deployment.
+Set `ALLOWED_ORIGINS` to the local frontend origin when testing browser requests. The API accepts PDFs up to 100 MB, validates the PDF header, limits concurrent and queued jobs, and deletes temporary files after a response or error.

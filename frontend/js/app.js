@@ -57,7 +57,9 @@ compressButton.addEventListener("click", async () => {
   document.querySelector("#progress-bar").style.width = "20%";
   document.querySelector("#status").textContent = "Uploading and compressing your PDF…";
   try {
-    const response = await fetch("/api/compress", { method: "POST", body: data });
+    const apiBaseUrl = window.PDF_COMPRESSOR_API_BASE_URL;
+    if (!apiBaseUrl) throw new Error("The compression API is not configured.");
+    const response = await fetch(`${apiBaseUrl}/api/compress`, { method: "POST", body: data });
     if (!response.ok) {
       const payload = await response.json().catch(() => ({}));
       throw new Error(payload.error || `Compression failed (${response.status}).`);

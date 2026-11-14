@@ -1,5 +1,3 @@
 node_modules
 npm-debug.log
-.vercel
-.vercel-build
 .env*

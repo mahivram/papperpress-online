@@ -3,20 +3,20 @@ import { spawn } from "node:child_process";
 import { access, mkdtemp, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import multer from "multer";
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-const publicDir = path.resolve(here, "../public");
 const app = express();
 const maxBytes = 100 * 1024 * 1024;
 const maxConcurrent = 2;
 const maxQueued = 10;
 const activeJobs = { count: 0, waiting: [] };
 let cachedGhostscriptPath = null;
+const allowedOrigins = new Set(
+  (process.env.ALLOWED_ORIGINS || "").split(",").map((origin) => origin.trim()).filter(Boolean)
+);
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: maxBytes, files: 1, fields: 3, parts: 4 }
@@ -24,9 +24,23 @@ const upload = multer({
 
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
-app.use(helmet({ crossOriginResourcePolicy: { policy: "same-origin" } }));
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+app.get("/health", (request, response) => response.json({ status: "ok" }));
+app.use("/api", (request, response, next) => {
+  const origin = request.get("origin");
+  if (!origin) return next();
+  if (!allowedOrigins.has(origin)) {
+    return response.status(403).json({ error: "This website is not allowed to use the compressor API." });
+  }
+  response.setHeader("Access-Control-Allow-Origin", origin);
+  response.setHeader("Vary", "Origin");
+  response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  response.setHeader("Access-Control-Expose-Headers", "X-Already-Smaller, X-Target-Reached, X-Not-Reduced");
+  if (request.method === "OPTIONS") return response.sendStatus(204);
+  next();
+});
 app.use("/api", rateLimit({ windowMs: 15 * 60 * 1000, limit: 20, standardHeaders: "draft-7", legacyHeaders: false }));
-app.use(express.static(publicDir, { extensions: ["html"] }));
 
 function acquireJob() {
   if (activeJobs.count < maxConcurrent) {
