@@ -2,11 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Compress PDF files to a smaller size with adjustable quality or a target size.">
-    <link rel="canonical" href="https://example.com/pdf-compressor/"><link rel="stylesheet" href="/css/style.css">
-    <title>PDF Compressor — Paperpress</title>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Paperpress PDF Compressor","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Compress PDF files using a server-side Ghostscript engine."}</script>
-    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my PDF uploaded?","acceptedAnswer":{"@type":"Answer","text":"Yes. This version uploads your PDF to the server for Ghostscript processing, then removes temporary files after the response."}},{"@type":"Question","name":"Can every PDF reach the target size?","acceptedAnswer":{"@type":"Answer","text":"No. The compressor returns its smallest result and tells you when the requested size could not be reached."}}]},{"@context":"https://schema.org","@type":"HowTo","name":"Compress a PDF online","step":[{"@type":"HowToStep","name":"Choose a PDF","text":"Select a PDF of up to 100 MB."},{"@type":"HowToStep","name":"Choose settings","text":"Select a compression level or enter a target size in KB."},{"@type":"HowToStep","name":"Download","text":"Compress the PDF and download the result."}]}]</script>
+    <meta name="description" content="Compress PDF files online for free. Reduce PDF file size with adjustable quality or a target size, then download your smaller PDF.">
+    <link rel="canonical" href="https://papperpress-online-frontend.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Online PDF Compressor | PaperPress">
+    <meta property="og:description" content="Reduce PDF file size with quality or target-size settings. Upload, compress, and download.">
+    <meta property="og:url" content="https://papperpress-online-frontend.vercel.app/">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Free PDF Compressor Online | PaperPress</title>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PaperPress Online PDF Compressor","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","url":"https://papperpress-online-frontend.vercel.app/","description":"Compress PDF files online with adjustable quality or a target file size."}</script>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I compress a PDF online for free?","acceptedAnswer":{"@type":"Answer","text":"Upload a PDF, choose a quality level or target size, then download the smaller file. This version processes the document on the server."}},{"@type":"Question","name":"Is my PDF uploaded when I use this compressor?","acceptedAnswer":{"@type":"Answer","text":"Yes. The PDF is sent to the server for compression. Temporary processing files are removed after the response."}},{"@type":"Question","name":"Can every PDF be compressed to a target size?","acceptedAnswer":{"@type":"Answer","text":"No. The result depends on the PDF's page count and images. The compressor returns its smallest result and reports when the target is not reached."}}]},{"@context":"https://schema.org","@type":"HowTo","name":"Compress a PDF online","step":[{"@type":"HowToStep","name":"Upload a PDF","text":"Select a PDF of up to 100 MB."},{"@type":"HowToStep","name":"Choose compression settings","text":"Select a quality level or enter a target size in KB."},{"@type":"HowToStep","name":"Download the compressed PDF","text":"Download the smaller PDF. Temporary processing files are removed after the response."}]}]</script>
   </head>
   <body>
     <main class="page-shell">
@@ -25,8 +30,8 @@
       <section class="hero-grid">
         <div class="intro">
           <p class="eyebrow"><span class="eyebrow-icon">✳</span> THE PDF COMPRESSOR</p>
-          <h1>Less file.<br><span>More freedom.</span></h1>
-          <p class="hero-copy">Get a smaller PDF without the busywork. Choose a compression level or target size, then download your file.</p>
+          <h1>Compress PDF files<br><span>online, your way.</span></h1>
+          <p class="hero-copy">Reduce PDF file size online for free. Choose a quality level or target size, then download the smaller file.</p>
           <ul class="hero-points">
             <li><span class="point-check">✓</span> Powerful Ghostscript engine</li>
             <li><span class="point-check">✓</span> No account or install needed</li>
@@ -37,7 +42,7 @@
         <section class="compressor tool-card" aria-labelledby="tool-heading">
           <div class="tool-header">
             <div class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.75h7.25L19 8.5v11.75H7a2 2 0 0 1-2-2v-12.5a2 2 0 0 1 2-2Z"/><path d="M14 4v5h5M8.5 14h7M8.5 17h5"/></svg></div>
-            <div class="tool-heading"><h2 id="tool-heading">Make it smaller</h2><p>Quick compression, no extra steps</p></div>
+            <div class="tool-heading"><h2 id="tool-heading">Compress a PDF</h2><p>Choose quality or target file size</p></div>
             <span class="tool-badge"><span class="online-dot"></span> Ready</span>
           </div>
           <label class="drop-zone" id="drop-zone" for="file-input">
@@ -75,17 +80,17 @@
       <section class="below-grid">
         <div class="content-card" id="how-it-works">
           <p class="section-kicker">THREE SIMPLE STEPS</p>
-          <h2>A lighter PDF, the easy way.</h2>
+          <h2>How to compress a PDF online</h2>
           <div class="steps">
-            <article><span>01</span><div><h3>Choose your PDF</h3><p>Select one PDF up to 100 MB from your device.</p></div></article>
-            <article><span>02</span><div><h3>Set your preference</h3><p>Choose a quality level or aim for a specific file size.</p></div></article>
-            <article><span>03</span><div><h3>Save the smaller file</h3><p>Download the result. Temporary files are removed afterward.</p></div></article>
+            <article><span>01</span><div><h3>Upload a PDF file</h3><p>Select a document up to 100 MB for compression.</p></div></article>
+            <article><span>02</span><div><h3>Choose PDF compression</h3><p>Select a quality level or set a target file size in KB.</p></div></article>
+            <article><span>03</span><div><h3>Download the compressed PDF</h3><p>Save the smaller file. Temporary files are removed after the response.</p></div></article>
           </div>
         </div>
         <div class="content-card size-card" id="size-guides">
           <p class="section-kicker">A SIZE IN MIND?</p>
-          <h2>Start with a target.</h2>
-          <p>Pick a popular size and fine-tune your document from there.</p>
+          <h2>Reduce PDF size to a target</h2>
+          <p>Choose a size goal, such as 100 KB, 200 KB, 500 KB, or 1 MB. Results depend on your PDF.</p>
           <div class="size-links">
             <a href="/compress-pdf-to-100kb.html"><strong>100</strong><span>KB <b>↗</b></span></a>
             <a href="/compress-pdf-to-200kb.html"><strong>200</strong><span>KB <b>↗</b></span></a>
@@ -93,6 +98,22 @@
             <a href="/compress-pdf-to-1mb.html"><strong>1</strong><span>MB <b>↗</b></span></a>
           </div>
         </div>
+      </section>
+      <section class="content-card faq-section" id="faq" aria-labelledby="faq-heading">
+        <p class="section-kicker">PDF COMPRESSION FAQ</p>
+        <h2 id="faq-heading">Questions about compressing PDFs</h2>
+        <details>
+          <summary>How do I compress a PDF online for free?</summary>
+          <p>Upload a PDF, choose a quality level or target size, then download the smaller file. This version processes the document on the server.</p>
+        </details>
+        <details>
+          <summary>Is my PDF uploaded when I use this compressor?</summary>
+          <p>Yes. The PDF is sent to the server for compression. Temporary processing files are removed after the response.</p>
+        </details>
+        <details>
+          <summary>Can every PDF reach 100 KB or another target size?</summary>
+          <p>No. The result depends on the PDF's page count and images. The compressor returns its smallest result and reports when the target is not reached.</p>
+        </details>
       </section>
       <footer class="site-footer"><a class="footer-brand" href="/">paperpress<span class="brand-period">.</span></a><span>Smaller files. A little more breathing room.</span><div><a href="/privacy.html">Privacy</a><a href="/about.html">About</a></div></footer>
     </main><script src="/api-config.js" defer></script><script src="/js/app.js" defer></script>

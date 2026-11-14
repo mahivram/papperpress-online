@@ -9,3 +9,5 @@ Create a Vercel project from the `papperpress-online` repository and set its Roo
 After the Vercel deployment, set `ALLOWED_ORIGINS` in the Render backend to the exact production Vercel origin (for example, `https://your-site.vercel.app`) and redeploy the backend.
 
 Vercel runs `npm run build` and publishes `dist/` as configured in `vercel.json`.
+
+The GitHub repository is connected to Vercel: pushes to `main` deploy to production, and pushes to other branches create preview deployments.

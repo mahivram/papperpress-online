@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/pdf-compressor/</loc></url>
-  <url><loc>https://example.com/pdf-compressor/compress-pdf-to-100kb.html</loc></url>
-  <url><loc>https://example.com/pdf-compressor/compress-pdf-to-200kb.html</loc></url>
-  <url><loc>https://example.com/pdf-compressor/compress-pdf-to-500kb.html</loc></url>
-  <url><loc>https://example.com/pdf-compressor/compress-pdf-to-1mb.html</loc></url>
+  <url><loc>https://papperpress-online-frontend.vercel.app/</loc></url>
+  <url><loc>https://papperpress-online-frontend.vercel.app/compress-pdf-to-100kb.html</loc></url>
+  <url><loc>https://papperpress-online-frontend.vercel.app/compress-pdf-to-200kb.html</loc></url>
+  <url><loc>https://papperpress-online-frontend.vercel.app/compress-pdf-to-500kb.html</loc></url>
+  <url><loc>https://papperpress-online-frontend.vercel.app/compress-pdf-to-1mb.html</loc></url>
 </urlset>
